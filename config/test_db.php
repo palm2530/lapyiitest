@@ -4,6 +4,5 @@ $db = require __DIR__ . '/db.php';
 $db['dsn'] = 'mysql:host=localhost;dbname=yii2basic_test';
 
 $db['username'] = 'dev';
-$db['password'] = 'dev';
-
+$db['password'] = 'password';
 return $db;
