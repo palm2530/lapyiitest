@@ -61,6 +61,16 @@ class SiteController extends Controller {
         return $this->render('index');
     }
 
+    public function actionSignupUser() {
+        Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+        $model = new SignupForm();
+        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+            return ['response' => 'Ok'];
+        } else {
+            return ['response' => 'Error'];
+        }
+    }
+
     public function actionLogin() {
         if (!\Yii::$app->user->isGuest) {
             return $this->goHome();
@@ -70,7 +80,7 @@ class SiteController extends Controller {
             return $this->goBack();
         } else {
             return $this->render('login', [
-                        'model' => $model,
+                'model' => $model,
             ]);
         }
     }
@@ -92,7 +102,7 @@ class SiteController extends Controller {
         }
 
         return $this->render('signup', [
-                    'model' => $model,
+            'model' => $model,
         ]);
     }
 
@@ -104,7 +114,7 @@ class SiteController extends Controller {
             return $this->refresh();
         } else {
             return $this->render('contact', [
-                        'model' => $model,
+                'model' => $model,
             ]);
         }
     }
@@ -126,7 +136,7 @@ class SiteController extends Controller {
         }
 
         return $this->render('requestPasswordResetToken', [
-                    'model' => $model,
+            'model' => $model,
         ]);
     }
 
@@ -144,8 +154,7 @@ class SiteController extends Controller {
         }
 
         return $this->render('resetPassword', [
-                    'model' => $model,
+            'model' => $model,
         ]);
     }
-
 }
